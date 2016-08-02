@@ -1,0 +1,26 @@
+.ng-cloak, .x-ng-cloak, [data-ng-cloak], [ng-cloak], [ng\:cloak], [x-ng-cloak] {
+    display: none;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+div.col.m4.list {
+    width: 300px;
+}
+.termItem {
+    text-align: right;
+    cursor: default;
+}
+.pTerm {
+  color: #8bc34a;
+}
+.nTerm {
+  color: #f44336;
+}
+.close {
+    cursor: pointer;
+    padding-left: 15px;
+    color: black;
+}

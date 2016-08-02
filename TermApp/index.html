@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+        <!--google font-->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
+        <!--font awesome-->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!--materialize-css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <!--custom-css-->
+        <link rel="stylesheet" href="css\custom.css">
+        <title>Term App</title>
+    </head>
+    <body ng-controller="MessageController as message">
+        <div class="container">
+            <div class="row">
+                <!--Form-->
+                <form ng-submit="submit(term)" name="myForm" class="col m4" ng-cloak>
+                    <h2>Term</h2>
+                    <label class="input-field">
+                        <div>
+                            <input id="textField" type="text" maxlength="50" ng-model="textField" required/>
+                        </div>
+                    </label>
+                    <label input-field>
+                        <select name="select" ng-model="term.select" ng-options="o.v as o.s for o in [{s: 'Positive', v: true}, {s: 'Negative', v: false}]" class="browser-default" id="type" required>
+                            <option selected value>Choose Type</optioin>
+                        </select>
+                    </label>
+                    <br>
+                    <!--add term button -->
+                    <input class="waves-effect waves-light btn" type="submit" value="Add Term">
+                </form>
+                <!--Positive List-->
+                <div class="col m4 list">
+                    <ul>
+                        <li>
+                            <h2 style="text-align: center;">Positive</h2>
+                        </li>
+                        <li ng-repeat="p in positive track by $index" class="collection" ng-if="!$first" ng-cloak>
+                            <div ng-click="show($event)" id="{{p.text}}" class="collection-item termItem">
+                                {{p.text}}
+                                <span class="close">
+                                    <i class="fa fa-times pTerm" ng-click="positive.splice($index, 1) && reset()"></i>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--Negative List-->
+                <div class="col m4 list">
+                    <ul>
+                        <li>
+                            <h2 style="text-align: center;">Negative</h2>
+                        </li>
+                        <li ng-repeat="n in negative track by $index" class="collection" ng-if="!$first" ng-cloak>
+                            <div ng-click="show($event)" id="{{n.text}}" class="collection-item termItem">
+                                {{n.text}}
+                                <span class="close">
+                                    <i ng-click="negative.splice($index, 1) && reset()" class="fa fa-times nTerm"></i>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--jquery-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <!--angularjs-->
+        <script type="text/javascript" src="js\angular-1.5.7\angular.js"></script>
+        <!--materialize js-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <!--angular-materialize-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
+        <!--app-js-->
+        <script type="text/javascript" src="js\app.js"></script>
+    </body>
+</html>
